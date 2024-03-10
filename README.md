@@ -7,7 +7,7 @@ En tant que scientifique des données, la capacité à réaliser des analyses co
 
 ## La thématique
 
-Le module python-pptx propose une solution puissante pour concevoir et personnaliser des présentations PowerPoint à partir de Python. Il permet aux scientifiques des données de générer des documents visuels dynamiques et informatifs en automatisant la création de diapositives, l'ajout de texte, d'images, voire même de graphiques. Cela s'avère particulièrement utile pour simplifier les tâches fastidieuses et répétitives souvent associées à la création d'une présentation PowerPoint. Un exemple concret est la précision requise pour positionner méticuleusement des images aux emplacements appropriés sur plusieurs diapositives en utilisant les lignes de guides de PowerPoint. Un autre cas d'utilisation est la réalisation de présentations hebdomadaires où la structure reste inchangée, mais les données évoluent. Cette bibliothèque offre de nouvelles opportunités pour rendre la communication des résultats de la science des données plus rapide, efficace et reproductible..
+Le module python-pptx propose une solution puissante pour concevoir et personnaliser des présentations PowerPoint à partir de Python. Il permet aux scientifiques des données de générer des documents visuels dynamiques et informatifs en automatisant la création de diapositives, l'ajout de texte, d'images, voire même de graphiques. Cela s'avère particulièrement utile pour simplifier les tâches fastidieuses et répétitives souvent associées à la création d'une présentation PowerPoint. Un exemple concret est la précision requise pour positionner méticuleusement des images aux emplacements appropriés sur plusieurs diapositives en utilisant les lignes de guides de PowerPoint. Un autre cas d'utilisation est la réalisation de présentations hebdomadaires où la structure reste inchangée, mais les données évoluent. Cette bibliothèque offre de nouvelles opportunités pour rendre la communication des résultats de la science des données plus rapide, efficace et reproductible.
 
 
 
@@ -91,6 +91,60 @@ Bien que ce tutoriel se concentre sur l'exploration des fonctionnalités princip
 
 À cette étape, nous sommes en mesure d'ajouter des éléments aux diapositives d'une présentation PowerPoint. Ces éléments peuvent inclure des formes (carrés, cercles, etc.), des graphiques, des tables, des images, du texte, etc. Ce tutoriel couvrira les grandes lignes et les éléments les plus importants, mais il est crucial de noter que cette bibliothèque offre bien plus de possibilités.
 
+Il existe deux méthodes pour ajouter des éléments à une présentation PowerPoint. Prenons l'exemple de l'ajout de texte. La première méthode consiste à créer une nouvelle zone de texte, la positionner sur la diapositive. La deuxième méthode, en revanche, consiste à ajouter du texte dans une zone de texte déjà existante, ou en d'autres termes, dans un espace réservé. 
+
+La première approche offre une personnalisation étendue, mais la deuxième est beaucoup plus rapide et efficace, car de nombreux paramètres sont déjà prédéterminés. Reprenons l'exemple du texte pour illustrer ces deux stratégies. Si nous voulons ajouter un titre à une diapositive avec la première méthode, nous devons positionner une boîte de texte à l'endroit souhaité, spécifier la police, la taille du texte, en plus de préciser le texte lui-même. Avec la deuxième stratégie, nous devons simplement indiquer l'espace réservé que nous voulons cibler et le texte que nous voulons afficher. L'emplacement du texte, la police et la taille sont déjà déterminés par défaut par PowerPoint.
+
+Cette même idée s'applique à tous les autres éléments mentionnés dans la section précédente. La stratégie pour accéder à l'espace réservé est similaire pour tous les éléments, mais l'ajout et la personnalisation varient pour chacun. Ce tutoriel abordera donc d'abord comment accéder à un espace réservé, puis explorera comment ajouter et personnaliser certains éléments par la suite.
+
+##### Espace réservé
+
+Il existe des différents type d'espcaces réservé, il faut donc s'assurer du type de l'espace avant d'y ajouter des éléments. 
+
+Considérons que les modules sont importés et que la présentation et que la présentation est représentée par la variable pres. 
+
+```
+
+# Ajout d'une diapositive à la présentation existante
+Espace_reserve_layout = pres.slide_layouts[8]
+Espace_reserve_slide = pres.slides.add_slide(Espace_reserve_layout)
+
+# Trouver l'index et le nom des espaces réservés
+for type in Espace_reserve_slide.placeholders:
+     print('%d %s' % (type.placeholder_format.idx, type.name))
+
+
+# Résultat
+0  Title 1
+1  Picture Placeholder 2
+2  Text Placeholder 3
+
+```
+La deuxième colonne nous indique le type de l'espace réservé et la première son index. Avec l'index, on peut accéder à l'espace réservé.  
+
+Pour ajouter du contenu au titre, sous-titre et une image à cette diapositive: 
+
+```
+    # Ajouter un titre
+    titre_espace = Espace_reserve_slide.placeholders[0]
+    titre = "Université de Sherbrooke"
+    titre_espace.text = titre
+
+    # Ajouter un sous-titre
+    soustitre_espace = Espace_reserve_slide.placeholders[2]
+    soustitre = "GTA431"
+    soustitre_espace.text = soustitre
+
+    # Ajouter une image
+    image_espace = Espace_reserve_slide.placeholders[1]
+    chemin_image = "data/Logo-UDS.png"
+    image_espace.insert_picture(chemin_image)
+
+    pres.save('image_added.pptx')
+
+```
+À noter que la logique pour ajouter une image est semblable pour ajouter un graphique ou une table, il suffit d'utiliser la "insert_chart" ou "insert_table" et s'assurer le lire le contenu des fichiers. Au cas ou que la lecture des fichiers n'est pas une connaissance acquise, nous allons l'exporer plus tard dans le tutoriel. 
+
  ##### Formes
 Les formes sont des éléments tels que des rectangles, des cercles, des étoiles, par exemple, que nous pouvons ajouter dans PowerPoint. Avec l'ajout d'autres modules, il est possible d'intégrer jusqu'à 180 formes différentes, la plupart pouvant être modifiées en longueur et en largeur, ainsi que dans leur couleur. Pour ajouter une forme à une diapositive, il faut :
 
@@ -103,6 +157,7 @@ Les formes sont des éléments tels que des rectangles, des cercles, des étoile
 
 (À noter : veuillez vous référer à la section précédente pour l'installation de la bibliothèque si elle n'est pas déjà installée.
 De plus, une multitude de bibliothèques et de modules existent pour les formes et les couleurs. Ceux présentés dans l'exemple suivant ne sont que des exemples, mais ils sont assez intuitifs et offrent beaucoup de flexibilité.)
+
 Cet exemple démontre comment ajouter un rectangle rouge avec des coins arrondis en haut à gauche de la diapositive.
 
 ```
@@ -171,8 +226,8 @@ Voici un exemple
     slide_layout = pres.slide_layouts[6]  # Choose a layout that supports charts
     slide = pres.slides.add_slide(slide_layout)
 
-    # Spécifier le chemin vers les données ( Dans ce cas, le fichier et dans le répertoire du projet)
-    chemin_excel = 'Donnes_graphique.xlsx'
+   # Spécifier le chemin vers les données ( Dans ce cas, le fichier et dans le répertoire du projet dans le fichier data)
+    chemin_excel = "data/Donnes_graphique.xlsx"
 
     # Lire la table Excel en utilisant la livrairie pandas (une façon parmis plusieurs)
     table = pd.read_excel(chemin_excel)
