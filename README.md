@@ -44,22 +44,22 @@ Maintenant que python-pptx est installé vous pouvez commencer à créer des Pow
 L'objectif de cette section est de créer une première présentation vide ou d'ouvrir une présentation existante pour y apporter des modifications. Tout d'abord, il est nécessaire d'importer le module "presentation" de python-pptx. La propriété "Présentation()" de ce module crée une nouvelle présentation. Dans l'exemple suivant, cette présentation est stockée sous la variable "pres". Cette nouvelle présentation est vierge et ne comporte aucune diapositive par défaut. Pour ouvrir une présentation existante, il suffit de spécifier le nom de la présentation entre les parenthèses :
 
 ```
+## demo1
+
 ## importation du module Presentation
 from pptx import Presentation
 
 # Création d'une nouvelle présentation
 pres = Presentation()
 
+# Sauvegarde de la présentation sous le nom demo1
+pres.save('demo1.pptx')
+
 # Ouverture d'une présentation existante
-pres = Presentation('nom_de_la_presentation_existante.pptx')
+pres = Presentation('demo1.pptx')
 ```
 
-Afin de sauvegarder toute manipulation, il est important de sauvegarder la présenation.
-```
-pres.save('nom_de_la_presentation.pptx')
-```
-
-Cette ligne permet de sauvegarder la présentation dans le dossier où se trouve le projet. Il est également possible de spécifier l'emplacement où vous souhaitez sauvegarder votre présentation en utilisant le chemin vers cet endroit. Ce tutoriel suppose que cette connaissance est déjà acquise en tant que base.
+Afin de sauvegarder toute manipulation, il est important de sauvegarder la présenation. Dans ce cas, la présentaiton est sauvegardée dans le dossier où se trouve le projet mais il est important de ne pas oublier que nous pouvons spécifier son emplacement utilisant le chemin vers cet endroit. Ce tutoriel suppose que cette connaissance est déjà acquise en tant que base.
 
 Maintenant qu'une présentation est créée, ouverte, et que nous sommes en mesure de la sauvegarder, nous pouvons procéder à sa modification.
 
@@ -70,6 +70,8 @@ Considérons une nouvelle présentation vierge, sans diapositive, par exemple, l
 
 Une fois que la mise en page est choisie, la diapositive peut être ajoutée à la présentation en utilisant la propriété « add_slide ». L'exemple suivant démontre comment ajouter deux diapositives avec deux mises en page différentes.
 ```
+## demo2
+
 PageTitre_layout = pres.slide_layouts[0]
 PageTitre_slide = pres.slides.add_slide(PageTitre_layout)
 
@@ -82,17 +84,34 @@ Les indices 0 et 1 de la propriété « slide_layouts » indiquent le type de mi
 
 Il est également possible de modifier la mise en page d'une diapositive existante.
 ```
-    # demo1
-    pres = Presentation('nom_de_la_presentation.pptx')
+    # demo3
 
+    # Charger la présentation
+    pres = Presentation('../demo2/demo2.pptx')
+
+    # Récupérer la diapositive à modifier
     diapositive_a_modifier = pres.slides[0]
 
+    # Obtenir la disposition (layout) originale de la diapositive
+    layout_original = diapositive_a_modifier.slide_layout
+
+    # Obtenir la disposition modifiée à assigner
     PageTitre_layout_modifie = pres.slide_layouts[2]
 
+    # Assigner la disposition modifiée à la diapositive
     diapositive_a_modifier.layout = PageTitre_layout_modifie
 
+    # Afficher les propriétés de la disposition originale et modifiée pour comparaison
+    print("Disposition Originale :")
+    print(layout_original.name)
+    print("Disposition Modifiée :")
+    print(PageTitre_layout_modifie.name)
+
+    # Enregistrer la présentation modifiée
+    pres.save('demo3.pptx')
+
 ```
-À la première ligne, nous ouvrons la présentation créée dans un précédent exemple. La deuxième ligne définit et récupère la première diapositive de la présentation, la stockant sous une nouvelle variable. La troisième ligne définit la mise en page désirée, et enfin, la dernière ligne procède à la modification elle-même. Évidemment, il est important de sauvegarder la présentation après ces modifications, comme illustré dans la section précédente.
+Le code commence par charger la présentation spécifiée, puis récupère la première diapositive. Ensuite, il stocke la disposition originale de cette diapositive et sélectionne une nouvelle disposition à assigner. Après avoir effectué cette modification, le code affiche les noms de la disposition originale et de la nouvelle disposition pour validatin du changement. Enfin, il enregistre la présentation modifiée sous un nouveau nom.
 
 Bien que ce tutoriel se concentre sur l'exploration des fonctionnalités principales, il est essentiel de noter que cette bibliothèque offre également la possibilité de créer un masque de diapositive. Pour plus de détails, vous pouvez consulter la documentation liée à la fin du tutoriel.
 
@@ -111,11 +130,11 @@ Il est possible de procédéer avec les 2 méthodes pour traiter les éléments 
 Il existe différents type d'espcaces réservé, il faut donc s'assurer du type de l'espace avant d'y ajouter des éléments. 
 
 Cet exemple nous permet de relever l'index et le nom du type d'espace d'une mise en page. 
-(Considérons que les modules sont importés et que la présentation et que la présentation est représentée par la variable pres.)
+(Considérons que les modules sont importés et qu'une nouvelle présentation est créée et qu'elle représentée par la variable pres.)
 
 ```
 
-# Ajout d'une diapositive à la présentation existante
+# Ajout d'une diapositive à une nouvelle présentation
 Espace_reserve_layout = pres.slide_layouts[8]
 Espace_reserve_slide = pres.slides.add_slide(Espace_reserve_layout)
 
@@ -263,9 +282,111 @@ Bien sûr, il existe de nombreuses options pour personnaliser l'esthétique du g
 
  #### Récapitulation
 
+```
  Voici un exemple combinant les connaissances que nous avons acquis lors de ce tutoriel:
+ from pptx import Presentation
+from pptx.chart.data import CategoryChartData
+from pptx.enum.chart import XL_CHART_TYPE
+from pptx.enum.shapes import MSO_SHAPE
+from pptx.util import Cm
+from pptx.dml.color import RGBColor
+import pandas as pd
 
+    # Creation de la presentation
+    pres = Presentation()
+
+    ## DIAPOSITIVE TITRE
+    # Ajouter une diapositive pour le titre de la présentation
+    diapo_titre_layout = pres.slide_layouts[8]
+    diapo_titre_slide = pres.slides.add_slide(diapo_titre_layout)
+
+    # Ajouter un titre
+    titre_espace = diapo_titre_slide.placeholders[0]
+    titre = "Université de Sherbrooke"
+    titre_espace.text = titre
+
+    # Ajouter un sous-titre
+    soustitre_espace = diapo_titre_slide.placeholders[2]
+    soustitre = "GTA431"
+    soustitre_espace.text = soustitre
+
+    # Ajouter une image
+    image_espace = diapo_titre_slide.placeholders[1]
+    chemin_image = "../../data/Logo-UDS.png"
+    image_espace.insert_picture(chemin_image)
+    
+    
+
+    ## DIAPOSITIVE AVEC GRAPHIQUE
+    # Ajouter une diapositive vierge
+    diapo_graphique_layout = pres.slide_layouts[6]  
+    diapo_graphique_slice = pres.slides.add_slide(diapo_graphique_layout)
+
+    # Spécifier le chemin vers les données ( Dans ce cas, le fichier et dans le répertoire du projet dans le fichier data)
+    chemin_excel = "../../data/Donnes_graphique.xlsx"
+
+    # Lire la table Excel en utilisant la librairie pandas (une façon parmis plusieurs)
+    table = pd.read_excel(chemin_excel)
+
+    # Extraire les données
+    donnees_graph = list(zip(table['Jours'], table['Precipitations']))
+
+    # Créer le graphique
+    graphique_donnees = CategoryChartData()
+    graphique_donnees.categories = [item[0] for item in donnees_graph]
+    graphique_donnees.add_series('Precipitations en mars', (item[1] for item in donnees_graph))
+
+    # Définir la taille du graphique et le positionner au centre de la diapositive
+    largeur_graph = pres.slide_width * 0.75
+    hauteur_graph = pres.slide_height * 0.75
+    axe_x_graph = (pres.slide_width / 2) - largeur_graph / 2
+    axe_y_graph = (pres.slide_height / 2) - hauteur_graph / 2
+
+    graphique = diapo_graphique_slice.shapes.add_chart(
+        XL_CHART_TYPE.COLUMN_CLUSTERED, axe_x_graph, axe_y_graph, largeur_graph, hauteur_graph, graphique_donnees
+    )
+
+
+    ## DIAPOSITIVE CONCLU
+
+    diapo_conclu_layout = pres.slide_layouts[5]
+    diapo_conclu_slide = pres.slides.add_slide(diapo_conclu_layout)
+
+    titre_espace = diapo_conclu_slide.placeholders[0]
+    titre = "FÉLICITATIONS!"
+    titre_espace.text = titre
+
+    # Assignation de la propriété shapes à la diapositive
+    formes = diapo_conclu_slide.shapes
+
+    # Définition de la taille en centimètres
+    hauteur_etoile = Cm(8)
+    largeur_etoile = hauteur_etoile
+
+    # Définition de l'emplacement (axe x et y de la diapositive)
+    axe_x_etoile = (pres.slide_width/2) -  largeur_etoile / 2
+    axe_y_etoile = (pres.slide_height/2) -  hauteur_etoile / 2
+
+    # Ajout de la forme (important de respecter l'ordre des arguments)
+    etoile = formes.add_shape(
+        MSO_SHAPE.STAR_5_POINT, axe_x_etoile, axe_y_etoile, largeur_etoile, hauteur_etoile  # Utilisation de MSO_SHAPE.STAR_5
+    )
+
+    # Définition de la couleur jaune
+    remplissage = etoile.fill
+    remplissage.solid()
+    remplissage.fore_color.rgb = RGBColor(255, 255, 0)  # Jaune (255, 255, 0)
+
+
+
+    # Enregistrement de la présentation
+    pres.save('demo8.pptx')
+
+    # Réouverture de la présentation
+    #pres = Presentation('demo8.pptx')
+```
+
+En conclusion, il est remarquablement simple de combiner tous les éléments que nous avons explorés dans ce tutoriel. La stratégie adoptée dans ce code consiste à traiter une diapositive à la fois. Cependant, il existe de nombreuses autres approches, telles que le traitement individuel des éléments avant de les ajouter aux diapositives. Il est essentiel de noter qu'aucune stratégie n'est intrinsèquement meilleure qu'une autre. La « meilleure » stratégie dépendra toujours de la nature de la présentation ainsi que des besoins spécifiques de l'entreprise. Par conséquent, il est recommandé de choisir la stratégie qui répond le mieux à vos objectifs et à votre contexte particulier. En expérimentant avec différentes approches, vous pourrez trouver celle qui convient le mieux à vos besoins et à votre style de travail.
  
 
-
- Documentation: https://python-pptx.readthedocs.io/en/latest/api/slides.html#slidemasters-objects 
+Documentation: https://python-pptx.readthedocs.io/en/latest/api/slides.html#slidemasters-objects 
