@@ -294,7 +294,7 @@ Bien sûr, il existe de nombreuses options pour personnaliser l'esthétique du g
 ```
 # demo 8
 
- from pptx import Presentation
+from pptx import Presentation
 from pptx.chart.data import CategoryChartData
 from pptx.enum.chart import XL_CHART_TYPE
 from pptx.enum.shapes import MSO_SHAPE
