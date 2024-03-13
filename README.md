@@ -3,21 +3,21 @@
 ## Contexte
 
 
-En tant que scientifique des données, la capacité à réaliser des analyses complexes est indéniablement cruciale. Toutefois, tout aussi important est le talent de communiquer ces résultats. Une analyse approfondie perd de sa valeur si elle ne peut être transmise ou comprise par les parties prenantes. Les présentations PowerPoint se révèlent être l'outil couramment utilisé pour faciliter cette communication et le partage de connaissances. Néanmoins, la création manuelle de ces présentations peut s'avérer fastidieuse et chronophage. Dans ce tutoriel, nous plongerons dans l'automatisation de ce processus en exploitant le potentiel du module python-pptx. Nous allons découvrir comment les éléments d'une présentation PowerPoint peut être manipulé comme un objet à travers le code Python. Nous allons survoler certains éléments tout en approfondissant d'autres aspects spécifiques. Afin de suivre ce tutoriel, il est nécessaire d'avoir une connaissance de base en programmation Python (comprendre les boucles, les conditions, les fonctions, etc.), un environnement de développement intégré (IDE) fonctionnel, et évidemment, une connaissance de base de PowerPoint. 
+En tant que scientifique des données, la capacité à réaliser des analyses complexes est indéniablement cruciale. Toutefois, tout aussi important est le talent de communiquer ces résultats. Une analyse approfondie perd de sa valeur si elle ne peut être transmise ou comprise par les parties prenantes. Les présentations PowerPoint se révèlent être l'outil couramment utilisé pour faciliter cette communication et le partage de connaissances. Néanmoins, la création manuelle de ces présentations peut s'avérer fastidieuse et chronophage. Dans ce tutoriel, nous plongerons dans l'automatisation de ce processus en exploitant le potentiel de la librairie python-pptx. Nous allons découvrir comment les éléments d'une présentation PowerPoint peuvent être manipulés comme objets à travers le code Python. Nous allons survoler certains éléments tout en approfondissant d'autres aspects spécifiques. Afin de suivre ce tutoriel, il est nécessaire d'avoir une connaissance de base en programmation Python (comprendre les boucles, les conditions, les fonctions, etc.), un environnement de développement intégré (IDE) fonctionnel, et évidemment, une connaissance de base de PowerPoint. 
 
 ## La thématique
 
-Le module python-pptx propose une solution puissante pour concevoir et personnaliser des présentations PowerPoint à partir de Python. Il permet aux scientifiques des données de générer des documents visuels dynamiques et informatifs en automatisant la création de diapositives, l'ajout de texte, d'images, voire même de graphiques. Cela s'avère particulièrement utile pour simplifier les tâches fastidieuses et répétitives souvent associées à la création d'une présentation PowerPoint. Un exemple concret est la précision requise pour positionner méticuleusement des images aux emplacements appropriés sur plusieurs diapositives en utilisant les lignes de guides de PowerPoint. Un autre cas d'utilisation est la réalisation de présentations hebdomadaires où la structure reste inchangée, mais les données évoluent. Cette bibliothèque offre de nouvelles opportunités pour rendre la communication des résultats de la science des données plus rapide, efficace et reproductible.
+La librairie python-pptx propose une solution puissante pour concevoir et personnaliser des présentations PowerPoint à partir de Python. Elle permet aux scientifiques des données de générer des documents visuels dynamiques et informatifs en automatisant la création de diapositives, l'ajout de texte, d'images, voire même de graphiques. Cela s'avère particulièrement utile pour simplifier les tâches fastidieuses et répétitives souvent associées à la création d'une présentation PowerPoint. Un exemple concret est la précision requise pour positionner méticuleusement des images aux emplacements appropriés sur plusieurs diapositives en utilisant les lignes de guides de PowerPoint. Un autre cas d'utilisation est la réalisation de présentations hebdomadaires où la structure reste inchangée, mais les données évoluent. Cette bibliothèque offre de nouvelles opportunités pour rendre la communication des résultats de la science des données plus rapide, efficace et reproductible.
 
 
 
 ### Installation de python-pptx
 
-Tout d'abord, commençons par l'installation de python-pptx. L'installation peut se faire de plusieurs manières : en utilisant la ligne de commande de votre environnement, le terminal (CMD) de votre ordinateur, ou même l'interface utilisateur de votre environnement. Afin de simplifier le tutoriel et d'accommoder les lecteurs ayant moins d'expérience en informatique en général, nous détaillerons uniquement l'installation par l'utilisation de l'interface utilisateur. Pour des instructions détaillées sur les deux autres méthodes, de nombreuses ressources en ligne sont disponibles, vous permettant de suivre les étapes nécessaires. Par exemple:
+Tout d'abord, commençons par l'installation de python-pptx. L'installation peut se faire de plusieurs manières : en utilisant la ligne de commande de votre environnement, le terminal (CMD) de votre ordinateur, ou même l'interface utilisateur de votre environnement. Afin de simplifier le tutoriel et d'accommoder les lecteurs ayant moins d'expérience en informatique en général, nous détaillerons uniquement l'installation par l'utilisation de l'interface utilisateur. Pour des instructions détaillées sur les deux autres méthodes, de nombreuses ressources en ligne sont disponibles vous permettant de suivre les étapes nécessaires. Par exemple:
 
 https://www.jetbrains.com/help/pycharm/installing-uninstalling-and-upgrading-packages.html. (L’installation de «pip» peut être un prérequis pour ces méthodes)
 
-#### Installation par l’utilisation de l’interface utilisateur de l’environnement
+#### Installation de python-pptx par l’utilisation de l’interface utilisateur de l’environnement
 
   * Dirigiez-vous vers l’environnement de votre choix (dans le cas du cours, Pycharm est utilisé)
   
@@ -35,7 +35,7 @@ Maintenant que python-pptx est installé vous pouvez commencer à créer des Pow
 
 #### Création et ouverture d’une présentation 
 
-L'objectif de cette section est de créer une première présentation vide ou d'ouvrir une existante pour y apporter des modifications. Tout d'abord, il est nécessaire d'importer le module "presentation". La fonction "Présentation()" de ce module crée une nouvelle présentation. Dans l'exemple suivant, cette présentation est stockée sous la variable "pres". Cette nouvelle présentation est vierge et ne comporte aucune diapositive par défaut. Pour ouvrir une présentation existante, il suffit de spécifier le nom de la présentation entre les parenthèses :
+L'objectif de cette section est de créer une première présentation vide ou d'ouvrir une présentation existante pour y apporter des modifications. Tout d'abord, il est nécessaire d'importer le module "presentation" de python-pptx. La propriété "Présentation()" de ce module crée une nouvelle présentation. Dans l'exemple suivant, cette présentation est stockée sous la variable "pres". Cette nouvelle présentation est vierge et ne comporte aucune diapositive par défaut. Pour ouvrir une présentation existante, il suffit de spécifier le nom de la présentation entre les parenthèses :
 
 ```
 ## importation du module Presentation
@@ -45,10 +45,10 @@ from pptx import Presentation
 pres = Presentation()
 
 # Ouverture d'une présentation existante
-pres = Presentation('nom_de_la_presentation.pptx')
+pres = Presentation('nom_de_la_presentation_existante.pptx')
 ```
 
-Afin de sauvegarder toute manipulation, il est important de sauvegarder la présenation
+Afin de sauvegarder toute manipulation, il est important de sauvegarder la présenation.
 ```
 pres.save('nom_de_la_presentation.pptx')
 ```
@@ -58,7 +58,9 @@ Cette ligne permet de sauvegarder la présentation dans le dossier où se trouve
 Maintenant qu'une présentation est créée, ouverte, et que nous sommes en mesure de la sauvegarder, nous pouvons procéder à sa modification.
 
 #### Diapositives  
-Considérons une nouvelle présentation vierge, sans diapositive, par exemple, la présentation « pres » créée par la ligne 2 de l'exemple précédent. Avant d'ajouter une diapositive, il faut d'abord prendre en compte la mise en page de celle-ci. Ceux qui sont familiers avec PowerPoint savent qu'il existe plusieurs types de mises en page, par exemple : un titre centré avec sous-titre, un entête avec une zone de texte, une diapositive vierge, etc. Dans le module python-pptx, il existe 11 mises en page différentes que l'on peut appeler en utilisant la propriété « slide_layouts ». Les mises en page sont numérotées de 0 à 10 ; une référence illustrée des mises en page associées à leurs identifiants se trouve dans les images de ce tutoriel.
+Considérons une nouvelle présentation vierge, sans diapositive, par exemple, la présentation « pres » créée par la ligne 4 de l'exemple précédent. Avant d'ajouter une diapositive, il faut d'abord considérer la mise en page de celle-ci. Ceux qui sont familiers avec PowerPoint savent qu'il existe plusieurs types de mises en page, par exemple : un titre centré avec sous-titre, un entête avec une zone de texte, une diapositive vierge, etc. Dans la librairie python-pptx, il existe 11 mises en page différentes que l'on peut appeler en utilisant la propriété « slide_layouts ». Les mises en page sont numérotées de 0 à 10 ; une référence illustrée des mises en page associées à leurs identifiants se trouve dans les images de ce tutoriel.
+
+
 
 Une fois que la mise en page est choisie, la diapositive peut être ajoutée à la présentation en utilisant la propriété « add_slide ». L'exemple suivant démontre comment ajouter deux diapositives avec deux mises en page différentes.
 ```
