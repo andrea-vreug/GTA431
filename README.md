@@ -133,6 +133,7 @@ Cet exemple nous permet de relever l'index et le nom du type d'espace d'une mise
 (Considérons que les modules sont importés et qu'une nouvelle présentation est créée et qu'elle représentée par la variable pres.)
 
 ```
+# demo 4
 
 # Ajout d'une diapositive à une nouvelle présentation
 Espace_reserve_layout = pres.slide_layouts[8]
@@ -154,6 +155,8 @@ La deuxième colonne nous indique le type de l'espace réservé et la première 
 Pour ajouter du contenu au titre, sous-titre et une image à cette diapositive: 
 
 ```
+    # demo 5
+
     # Ajouter un titre
     titre_espace = Espace_reserve_slide.placeholders[0]
     titre = "Université de Sherbrooke"
@@ -187,6 +190,8 @@ Les formes sont des éléments tels que des rectangles, des cercles, des étoile
 Cet exemple démontre comment ajouter un rectangle rouge avec des coins arrondis en haut à gauche de la diapositive.
 
 ```
+    # demo 6
+
     # Importation des modules
     from pptx import Presentation
     from pptx.enum.shapes import MSO_SHAPE
@@ -239,6 +244,8 @@ Pour ajouter un graphqiue utilisant des données d'un fichier excel, il suffit d
 
 Voici un exemple
 ```
+    # demo 7
+
     from pptx import Presentation
     from pptx.chart.data import CategoryChartData
     from pptx.enum.chart import XL_CHART_TYPE
@@ -281,9 +288,12 @@ Voici un exemple
 Bien sûr, il existe de nombreuses options pour personnaliser l'esthétique du graphique. Ces propriétés peuvent être explorées davantage dans la documentation, disponible à la fin du tutoriel
 
  #### Récapitulation
+ 
+ Voici un exemple combinant les connaissances que nous avons acquis lors de ce tutoriel:
 
 ```
- Voici un exemple combinant les connaissances que nous avons acquis lors de ce tutoriel:
+# demo 8
+
  from pptx import Presentation
 from pptx.chart.data import CategoryChartData
 from pptx.enum.chart import XL_CHART_TYPE
