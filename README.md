@@ -22,14 +22,14 @@ https://www.jetbrains.com/help/pycharm/installing-uninstalling-and-upgrading-pac
   * Dirigiez-vous vers l’environnement de votre choix (dans le cas du cours, Pycharm est utilisé)
   
   * Sélectionner « Réglages » dans le menu « Fichiers » en haut à gauche
- <img src="Images/Pycharm-Settings.png" alt="Alt text" width="400"/>
+ <img src="images/Pycharm-Settings.png" alt="Alt text" width="400"/>
     
   * Sélectionner votre projet et puis « Interpréteur de Python »
 
-<img src="Images/pychar-python_interpreter.png" alt="Alt text" width="400"/>
+<img src="images/pychar-python_interpreter.png" alt="Alt text" width="400"/>
   
   * Sélectionner le « + », entrez « python-pptx » dans la boite de recherche et installez
-<img src="Images/Pycharm-Install_Packages.png" alt="Alt text" width="400"/>
+<img src="images/Pycharm-Install_Packages.png" alt="Alt text" width="400"/>
     
 
 
@@ -65,7 +65,7 @@ Maintenant qu'une présentation est créée, ouverte, et que nous sommes en mesu
 #### Diapositives  
 Considérons une nouvelle présentation vierge, sans diapositive, par exemple, la présentation « pres » créée par la ligne 4 de l'exemple précédent. Avant d'ajouter une diapositive, il faut d'abord considérer la mise en page de celle-ci. Ceux qui sont familiers avec PowerPoint savent qu'il existe plusieurs types de mises en page, par exemple : un titre centré avec sous-titre, un entête avec une zone de texte, une diapositive vierge, etc. Dans la librairie python-pptx, il existe 11 mises en page différentes que l'on peut appeler en utilisant la propriété « slide_layouts ». Les mises en page sont numérotées de 0 à 10 ; une référence illustrée des mises en page associées à leurs identifiants se trouve dans les images de ce tutoriel.
 
-<img src="Images/Mise_en_page_diapositives.png" alt="Alt text" width="400"/>
+<img src="images/Mise_en_page_diapositives.png" alt="Alt text" width="400"/>
 
 Une fois que la mise en page est choisie, la diapositive peut être ajoutée à la présentation en utilisant la propriété « add_slide ». L'exemple suivant démontre comment ajouter deux diapositives avec deux mises en page différentes.
 ```
