@@ -63,7 +63,7 @@ Cette ligne permet de sauvegarder la présentation dans le dossier où se trouve
 Maintenant qu'une présentation est créée, ouverte, et que nous sommes en mesure de la sauvegarder, nous pouvons procéder à sa modification.
 
 #### Diapositives  
-Considérons une nouvelle présentation vierge, sans diapositive, par exemple, la présentation « pres » créée par la ligne 4 de l'exemple précédent. Avant d'ajouter une diapositive, il faut d'abord considérer la mise en page de celle-ci. Ceux qui sont familiers avec PowerPoint savent qu'il existe plusieurs types de mises en page, par exemple : un titre centré avec sous-titre, un entête avec une zone de texte, une diapositive vierge, etc. Dans la librairie python-pptx, il existe 11 mises en page différentes que l'on peut appeler en utilisant la propriété « slide_layouts ». Les mises en page sont numérotées de 0 à 10 ; une référence illustrée des mises en page associées à leurs identifiants se trouve dans les images de ce tutoriel.
+Considérons une nouvelle présentation vierge, sans diapositive, par exemple, la présentation « pres » créée par la ligne 4 de l'exemple précédent. Avant d'ajouter une diapositive, il faut d'abord considérer la mise en page de celle-ci. Ceux qui sont familiers avec PowerPoint savent qu'il existe plusieurs types de mises en page, par exemple : un titre centré avec sous-titre, un entête avec une zone de texte, une diapositive vierge, etc. Dans la librairie python-pptx, il existe 11 mises en page différentes que l'on peut appeler en utilisant la propriété « slide_layouts ». Les mises en page sont numérotées de 0 à 10.
 
 <img src="images/Mise_en_page_diapositives.png" alt="Alt text" width="400"/>
 
@@ -81,6 +81,7 @@ Les indices 0 et 1 de la propriété « slide_layouts » indiquent le type de mi
 
 Il est également possible de modifier la mise en page d'une diapositive existante.
 ```
+    # demo1
     pres = Presentation('nom_de_la_presentation.pptx')
 
     diapositive_a_modifier = pres.slides[0]
@@ -90,7 +91,7 @@ Il est également possible de modifier la mise en page d'une diapositive existan
     diapositive_a_modifier.layout = PageTitre_layout_modifie
 
 ```
-À la première ligne, nous ouvrons la présentation créée dans un précédent exemple. La deuxième ligne définit et récupère la première diapositive de la présentation, la stockant sous une nouvelle variable. La troisième ligne définit la mise en page désirée, et enfin, la dernière ligne procède à la modification proprement dite. Évidemment, il est important de sauvegarder la présentation après ces modifications, comme illustré dans la section précédente.
+À la première ligne, nous ouvrons la présentation créée dans un précédent exemple. La deuxième ligne définit et récupère la première diapositive de la présentation, la stockant sous une nouvelle variable. La troisième ligne définit la mise en page désirée, et enfin, la dernière ligne procède à la modification elle-même. Évidemment, il est important de sauvegarder la présentation après ces modifications, comme illustré dans la section précédente.
 
 Bien que ce tutoriel se concentre sur l'exploration des fonctionnalités principales, il est essentiel de noter que cette bibliothèque offre également la possibilité de créer un masque de diapositive. Pour plus de détails, vous pouvez consulter la documentation liée à la fin du tutoriel.
 
@@ -98,17 +99,18 @@ Bien que ce tutoriel se concentre sur l'exploration des fonctionnalités princip
 
 À cette étape, nous sommes en mesure d'ajouter des éléments aux diapositives d'une présentation PowerPoint. Ces éléments peuvent inclure des formes (carrés, cercles, etc.), des graphiques, des tables, des images, du texte, etc. Ce tutoriel couvrira les grandes lignes et les éléments les plus importants, mais il est crucial de noter que cette bibliothèque offre bien plus de possibilités.
 
-Il existe deux méthodes pour ajouter des éléments à une présentation PowerPoint. Prenons l'exemple de l'ajout de texte. La première méthode consiste à créer une nouvelle zone de texte, la positionner sur la diapositive. La deuxième méthode, en revanche, consiste à ajouter du texte dans une zone de texte déjà existante, ou en d'autres termes, dans un espace réservé. 
+Il existe deux méthodes pour ajouter des éléments à une présentation PowerPoint. Prenons l'exemple de l'ajout de texte pour les comprendre. La première méthode consiste à créer une nouvelle zone de texte et la positionner sur la diapositive. La deuxième méthode, en revanche, consiste à ajouter du texte dans une zone de texte déjà existante et positionnée sur la diapositive, ou en d'autres termes, dans un espace réservé. 
 
 La première approche offre une personnalisation étendue, mais la deuxième est beaucoup plus rapide et efficace, car de nombreux paramètres sont déjà prédéterminés. Reprenons l'exemple du texte pour illustrer ces deux stratégies. Si nous voulons ajouter un titre à une diapositive avec la première méthode, nous devons positionner une boîte de texte à l'endroit souhaité, spécifier la police, la taille du texte, en plus de préciser le texte lui-même. Avec la deuxième stratégie, nous devons simplement indiquer l'espace réservé que nous voulons cibler et le texte que nous voulons afficher. L'emplacement du texte, la police et la taille sont déjà déterminés par défaut par PowerPoint.
 
-Cette même idée s'applique à tous les autres éléments mentionnés dans la section précédente. La stratégie pour accéder à l'espace réservé est similaire pour tous les éléments, mais l'ajout et la personnalisation varient pour chacun. Ce tutoriel abordera donc d'abord comment accéder à un espace réservé, puis explorera comment ajouter et personnaliser certains éléments par la suite.
+Il est possible de procédéer avec les 2 méthodes pour traiter les éléments mentionnés dans la section précédente. La stratégie pour accéder à l'espace réservé peut être généralisée pour tous les éléments, mais l'ajout et la personnalisation varient pour chacun. Ce tutoriel abordera donc d'abord comment accéder à un espace réservé, puis explorera comment ajouter et personnaliser certains éléments par la suite.
 
 ##### Espace réservé
 
-Il existe des différents type d'espcaces réservé, il faut donc s'assurer du type de l'espace avant d'y ajouter des éléments. 
+Il existe différents type d'espcaces réservé, il faut donc s'assurer du type de l'espace avant d'y ajouter des éléments. 
 
-Considérons que les modules sont importés et que la présentation et que la présentation est représentée par la variable pres. 
+Cet exemple nous permet de relever l'index et le nom du type d'espace d'une mise en page. 
+(Considérons que les modules sont importés et que la présentation et que la présentation est représentée par la variable pres.)
 
 ```
 
@@ -127,7 +129,7 @@ for type in Espace_reserve_slide.placeholders:
 2  Text Placeholder 3
 
 ```
-La deuxième colonne nous indique le type de l'espace réservé et la première son index. Avec l'index, on peut accéder à l'espace réservé.  
+La deuxième colonne nous indique le type de l'espace réservé et la première son index. Avec l'index, on peut accéder à l'espace réservé et le nom de l'espace nous indique le type de donné qu'on peut y ajouter.   
 
 Pour ajouter du contenu au titre, sous-titre et une image à cette diapositive: 
 
@@ -150,20 +152,17 @@ Pour ajouter du contenu au titre, sous-titre et une image à cette diapositive:
     pres.save('image_added.pptx')
 
 ```
-À noter que la logique pour ajouter une image est semblable pour ajouter un graphique ou une table, il suffit d'utiliser la "insert_chart" ou "insert_table" et s'assurer le lire le contenu des fichiers. Au cas ou que la lecture des fichiers n'est pas une connaissance acquise, nous allons l'exporer plus tard dans le tutoriel. 
+À noter que la logique pour ajouter une image est semblable à celll pour ajouter un graphique ou une table, il suffit d'utiliser la "insert_chart" ou "insert_table" au lieu de "insert_picture" et s'assurer le lire le contenu des fichiers. Au cas ou que la lecture des fichiers n'est pas une connaissance acquise, nous allons l'exporer plus tard dans le tutoriel. 
 
  ##### Formes
 Les formes sont des éléments tels que des rectangles, des cercles, des étoiles, par exemple, que nous pouvons ajouter dans PowerPoint. Avec l'ajout d'autres modules, il est possible d'intégrer jusqu'à 180 formes différentes, la plupart pouvant être modifiées en longueur et en largeur, ainsi que dans leur couleur. Pour ajouter une forme à une diapositive, il faut :
 
-  *  Importer le module MSO_SHAPE de  pptx.enum.shapes pour avoir accès aux différentes formes
+  * Importer le module MSO_SHAPE de  pptx.enum.shapes pour avoir accès aux différentes formes
   * Importer le module Cm de pptx.util pour facilité le choix des dimensions
   * Importer le module RBGColor de pptx.dml.color pour modifier la couleur de la forme
   * Définir l'emplacement de la forme
   * Définir la taille de la forme
   * Définir tout autre paramètre désiré comme la couleur ou la bordure
-
-(À noter : veuillez vous référer à la section précédente pour l'installation de la bibliothèque si elle n'est pas déjà installée.
-De plus, une multitude de bibliothèques et de modules existent pour les formes et les couleurs. Ceux présentés dans l'exemple suivant ne sont que des exemples, mais ils sont assez intuitifs et offrent beaucoup de flexibilité.)
 
 Cet exemple démontre comment ajouter un rectangle rouge avec des coins arrondis en haut à gauche de la diapositive.
 
@@ -177,21 +176,21 @@ Cet exemple démontre comment ajouter un rectangle rouge avec des coins arrondis
     # Création de la présentation
     pres = Presentation()
 
-    # Création de la diapositive
+    # Création de la diapositive avec mise en page
     diapositive_layout = pres.slide_layouts[0]
     diapositive_slide = pres.slides.add_slide(diapositive_layout)
 
     # Assignation de la propriété shapes à la diapositive
     formes = diapositive_slide.shapes
 
-     # Définition de la taille
+     # Définition de la taille en centimètres
     hauteur = Cm(2)
     largeur = hauteur *2
 
-     # Définition de l'emplacement
+     # Définition de l'emplacement (axe x et y de la diapositive)
     axe_x = axe_y = Cm(3)
 
-    # Ajout de la forme
+    # Ajout de la forme (important de respecter l'ordre des arguments)
     rectangle = formes.add_shape(
         MSO_SHAPE.ROUNDED_RECTANGLE, axe_x, axe_y, largeur, hauteur
     )
@@ -204,13 +203,12 @@ Cet exemple démontre comment ajouter un rectangle rouge avec des coins arrondis
     pres.save('rectangle.pptx')
 
 ```
-
-Nous avons défini certaines caractéristiques de notre forme, mais il en existe bien d'autres, telles que la couleur de la bordure, l'épaisseur de la bordure, l'ombre, etc. Celles que nous avons omises seront attribuées aux paramètres par défaut prédéfinis. Nous n'approfondirons pas davantage la logique du code, étant donné que nous avons déjà abordé quelques concepts fondamentaux plus tôt dans le tutoriel.
+Nous avons défini certaines caractéristiques de notre forme, mais il en existe bien d'autres, telles que la couleur de la bordure, l'épaisseur de la bordure, l'ombre, etc. Celles que nous avons omises seront attribuées aux paramètres par défaut prédéfinis. Nous n'approfondirons pas davantage la logique du code, étant donné que nous avons déjà abordé quelques concepts fondamentaux plus tôt dans le tutoriel et que les autres devraient être déjà acquis. 
 
 
  ##### Graphiques
 
-Ce module nous permet également d'ajouter des graphiques à notre présentation PowerPoint. D'une part, nous pouvons intégrer les données directement dans le code Python en les mentionnant explicitement. D'autre part, il est aussi possible d'utiliser les données d'un autre fichier, par exemple un fichier Excel. Cette dernière option plus intéressante, explorons comment procéder. 
+Cette librairie offre également la possibilité d'incorporer des graphiques dans notre présentation PowerPoint. Pour ce faire, nous avons deux options : d'une part, nous pouvons intégrer directement les données dans le code Python en les spécifiant explicitement ; d'autre part, il est également possible d'utiliser des données provenant de sources externes telles que des bases de données, des API et des fichiers locaux. Étant donné le niveau d'expertise requis pour ce tutoriel, nous allons explorer comment utiliser les données issues d'un fichier local ou d'un fichier Excel.
 
 Pour ajouter un graphqiue utilisant des données d'un fichier excel, il suffit de suivre les étapes suivantes:
 * Importer le module CategoryChartData de pptx.chart.data et XL_CHART_TYPE de pptx.enum.chart
@@ -236,7 +234,7 @@ Voici un exemple
    # Spécifier le chemin vers les données ( Dans ce cas, le fichier et dans le répertoire du projet dans le fichier data)
     chemin_excel = "data/Donnes_graphique.xlsx"
 
-    # Lire la table Excel en utilisant la livrairie pandas (une façon parmis plusieurs)
+    # Lire la table Excel en utilisant la librairie pandas (une façon parmis plusieurs)
     table = pd.read_excel(chemin_excel)
 
     # Extraire les données
@@ -259,7 +257,13 @@ Voici un exemple
 
     pres.save('precipitations_mars.pptx')
 ```
+
 Bien sûr, il existe de nombreuses options pour personnaliser l'esthétique du graphique. Ces propriétés peuvent être explorées davantage dans la documentation, disponible à la fin du tutoriel
+
+ #### Récapitulation
+
+ Voici un exemple combinant les connaissances que nous avons acquis lors de ce tutoriel:
+
  
 
 
