@@ -22,15 +22,15 @@ https://www.jetbrains.com/help/pycharm/installing-uninstalling-and-upgrading-pac
   * Dirigiez-vous vers l’environnement de votre choix (dans le cas du cours, Pycharm est utilisé)
   
   * Sélectionner « Réglages » dans le menu « Fichiers » en haut à gauche
-    <img src="images/Pycharm-Settings.png" alt="Alt text" width="400"/>
- 
+   <img src="images/Pycharm-Settings.png" alt="Alt text" width="400"/>
+
     
   * Sélectionner votre projet et puis « Interpréteur de Python »
-    <img src="images/pychar-python_interpreter.png" alt="Alt text" width="400"/>
-    
+   <img src="images/pychar-python_interpreter.png" alt="Alt text" width="400"/>
+
   
   * Sélectionner le « + », entrez « python-pptx » dans la boite de recherche et installez
-    <img src="images/Pycharm-Install_Packages.png" alt="Alt text" width="400"/>
+   <img src="images/Pycharm-Install_Packages.png" alt="Alt text" width="400"/>
     
 
 
