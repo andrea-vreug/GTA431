@@ -10,7 +10,7 @@ En tant que scientifique des données, la capacité à réaliser des analyses co
 La librairie python-pptx propose une solution puissante pour concevoir et personnaliser des présentations PowerPoint à partir de Python. Elle permet aux scientifiques des données de générer des documents visuels dynamiques et informatifs en automatisant la création de diapositives, l'ajout de texte, d'images, voire même de graphiques. Cela s'avère particulièrement utile pour simplifier les tâches fastidieuses et répétitives souvent associées à la création d'une présentation PowerPoint. Un exemple concret est la précision requise pour positionner méticuleusement des images aux emplacements appropriés sur plusieurs diapositives en utilisant les lignes de guides de PowerPoint. Un autre cas d'utilisation est la réalisation de présentations hebdomadaires où la structure reste inchangée, mais les données évoluent. Cette bibliothèque offre de nouvelles opportunités pour rendre la communication des résultats de la science des données plus rapide, efficace et reproductible.
 
 
-
+## Tutoriel
 ### Installation de python-pptx
 
 Tout d'abord, commençons par l'installation de python-pptx. L'installation peut se faire de plusieurs manières : en utilisant la ligne de commande de votre environnement, le terminal (CMD) de votre ordinateur, ou même l'interface utilisateur de votre environnement. Afin de simplifier le tutoriel et d'accommoder les lecteurs ayant moins d'expérience en informatique en général, nous détaillerons uniquement l'installation par l'utilisation de l'interface utilisateur. Pour des instructions détaillées sur les deux autres méthodes, de nombreuses ressources en ligne sont disponibles vous permettant de suivre les étapes nécessaires. Par exemple:
@@ -37,11 +37,9 @@ https://www.jetbrains.com/help/pycharm/installing-uninstalling-and-upgrading-pac
 Maintenant que python-pptx est installé vous pouvez commencer à créer des Power Point à partir de Python!
 
 
-### 3.2 Présentation
+### Création et ouverture d’une présentation 
 
-#### Création et ouverture d’une présentation 
-
-L'objectif de cette section est de créer une première présentation vide ou d'ouvrir une présentation existante pour y apporter des modifications. Tout d'abord, il est nécessaire d'importer le module "presentation" de python-pptx. La propriété "Présentation()" de ce module crée une nouvelle présentation. Dans l'exemple suivant, cette présentation est stockée sous la variable "pres". Cette nouvelle présentation est vierge et ne comporte aucune diapositive par défaut. Pour ouvrir une présentation existante, il suffit de spécifier le nom de la présentation entre les parenthèses :
+L'objectif de cette section est de créer une présentation vide pour y apporter des modifications ou d'ouvrir une présentation existante. Pour commencer, nous devons importer le module « presentation » de python-pptx. La propriété « Présentation() » de ce module crée une nouvelle présentation. Dans l'exemple suivant, cette présentation est stockée dans la variable « pres ». Elle est initialement vide et ne comporte aucune diapositive par défaut. Pour ouvrir une présentation existante, il suffit de spécifier le nom de celle-ci entre les parenthèses :
 
 ```
 ## demo1
@@ -59,16 +57,16 @@ pres.save('demo1.pptx')
 pres = Presentation('demo1.pptx')
 ```
 
-Afin de sauvegarder toute manipulation, il est important de sauvegarder la présenation. Dans ce cas, la présentaiton est sauvegardée dans le dossier où se trouve le projet mais il est important de ne pas oublier que nous pouvons spécifier son emplacement utilisant le chemin vers cet endroit. Ce tutoriel suppose que cette connaissance est déjà acquise en tant que base.
+Afin de sauvegarder toute manipulation, il est important de sauvegarder la présenation. Dans ce cas, la présentation est sauvegardée dans le dossier où se trouve le projet, mais il est important de ne pas oublier que nous pouvons spécifier son emplacement utilisant le chemin vers cet endroit. Ce tutoriel suppose que cette connaissance est déjà acquise en tant que base.
 
 Maintenant qu'une présentation est créée, ouverte, et que nous sommes en mesure de la sauvegarder, nous pouvons procéder à sa modification.
 
-#### Diapositives  
+### Diapositives  
 Considérons une nouvelle présentation vierge, sans diapositive, par exemple, la présentation « pres » créée par la ligne 4 de l'exemple précédent. Avant d'ajouter une diapositive, il faut d'abord considérer la mise en page de celle-ci. Ceux qui sont familiers avec PowerPoint savent qu'il existe plusieurs types de mises en page, par exemple : un titre centré avec sous-titre, un entête avec une zone de texte, une diapositive vierge, etc. Dans la librairie python-pptx, il existe 11 mises en page différentes que l'on peut appeler en utilisant la propriété « slide_layouts ». Les mises en page sont numérotées de 0 à 10.
 
 <img src="images/Mise_en_page_diapositives.png" alt="Alt text" width="400"/>
 
-Une fois que la mise en page est choisie, la diapositive peut être ajoutée à la présentation en utilisant la propriété « add_slide ». L'exemple suivant démontre comment ajouter deux diapositives avec deux mises en page différentes.
+Une fois que la mise en page est choisie, la diapositive peut être ajoutée à la présentation en utilisant la propriété « add_slide ». L'exemple suivant démontre comment ajouter deux diapositives avec deux mises en page différentes à la présentation « pres ».
 ```
 ## demo2
 
@@ -111,11 +109,11 @@ Il est également possible de modifier la mise en page d'une diapositive existan
     pres.save('demo3.pptx')
 
 ```
-Le code commence par charger la présentation spécifiée, puis récupère la première diapositive. Ensuite, il stocke la disposition originale de cette diapositive et sélectionne une nouvelle disposition à assigner. Après avoir effectué cette modification, le code affiche les noms de la disposition originale et de la nouvelle disposition pour validatin du changement. Enfin, il enregistre la présentation modifiée sous un nouveau nom.
+Le code commence par charger la présentation spécifiée, puis récupère la première diapositive. Ensuite, il stocke la disposition originale de cette diapositive et sélectionne une nouvelle disposition à assigner. Après avoir effectué cette modification, le code affiche les noms de la disposition originale et de la nouvelle disposition pour validation du changement. Enfin, il enregistre la présentation modifiée sous un nouveau nom.
 
 Bien que ce tutoriel se concentre sur l'exploration des fonctionnalités principales, il est essentiel de noter que cette bibliothèque offre également la possibilité de créer un masque de diapositive. Pour plus de détails, vous pouvez consulter la documentation liée à la fin du tutoriel.
 
-#### Éléments
+### Éléments
 
 À cette étape, nous sommes en mesure d'ajouter des éléments aux diapositives d'une présentation PowerPoint. Ces éléments peuvent inclure des formes (carrés, cercles, etc.), des graphiques, des tables, des images, du texte, etc. Ce tutoriel couvrira les grandes lignes et les éléments les plus importants, mais il est crucial de noter que cette bibliothèque offre bien plus de possibilités.
 
@@ -125,7 +123,7 @@ La première approche offre une personnalisation étendue, mais la deuxième est
 
 Il est possible de procédéer avec les 2 méthodes pour traiter les éléments mentionnés dans la section précédente. La stratégie pour accéder à l'espace réservé peut être généralisée pour tous les éléments, mais l'ajout et la personnalisation varient pour chacun. Ce tutoriel abordera donc d'abord comment accéder à un espace réservé, puis explorera comment ajouter et personnaliser certains éléments par la suite.
 
-##### Espace réservé
+#### Espace réservé
 
 Il existe différents type d'espcaces réservé, il faut donc s'assurer du type de l'espace avant d'y ajouter des éléments. 
 
@@ -175,9 +173,9 @@ Pour ajouter du contenu au titre, sous-titre et une image à cette diapositive:
     pres.save('image_added.pptx')
 
 ```
-À noter que la logique pour ajouter une image est semblable à celll pour ajouter un graphique ou une table, il suffit d'utiliser la "insert_chart" ou "insert_table" au lieu de "insert_picture" et s'assurer le lire le contenu des fichiers. Au cas ou que la lecture des fichiers n'est pas une connaissance acquise, nous allons l'exporer plus tard dans le tutoriel. 
+À noter que la logique pour ajouter une image est semblable à celle pour ajouter un graphique ou une table, il suffit d'utiliser la propriété « insert_chart » ou « insert_table » au lieu de « insert_picture » et s'assurer le lire le contenu des fichiers. Au cas ou que la lecture des fichiers n'est pas une connaissance acquise, nous allons l'exporer plus tard dans le tutoriel. 
 
- ##### Formes
+ ### Formes
 Les formes sont des éléments tels que des rectangles, des cercles, des étoiles, par exemple, que nous pouvons ajouter dans PowerPoint. Avec l'ajout d'autres modules, il est possible d'intégrer jusqu'à 180 formes différentes, la plupart pouvant être modifiées en longueur et en largeur, ainsi que dans leur couleur. Pour ajouter une forme à une diapositive, il faut :
 
   * Importer le module MSO_SHAPE de  pptx.enum.shapes pour avoir accès aux différentes formes
@@ -231,12 +229,12 @@ Cet exemple démontre comment ajouter un rectangle rouge avec des coins arrondis
 Nous avons défini certaines caractéristiques de notre forme, mais il en existe bien d'autres, telles que la couleur de la bordure, l'épaisseur de la bordure, l'ombre, etc. Celles que nous avons omises seront attribuées aux paramètres par défaut prédéfinis. Nous n'approfondirons pas davantage la logique du code, étant donné que nous avons déjà abordé quelques concepts fondamentaux plus tôt dans le tutoriel et que les autres devraient être déjà acquis. 
 
 
- ##### Graphiques
+ ### Graphiques
 
 Cette librairie offre également la possibilité d'incorporer des graphiques dans notre présentation PowerPoint. Pour ce faire, nous avons deux options : d'une part, nous pouvons intégrer directement les données dans le code Python en les spécifiant explicitement ; d'autre part, il est également possible d'utiliser des données provenant de sources externes telles que des bases de données, des API et des fichiers locaux. Étant donné le niveau d'expertise requis pour ce tutoriel, nous allons explorer comment utiliser les données issues d'un fichier local ou d'un fichier Excel.
 
 Pour ajouter un graphqiue utilisant des données d'un fichier excel, il suffit de suivre les étapes suivantes:
-* Importer le module CategoryChartData de pptx.chart.data et XL_CHART_TYPE de pptx.enum.chart
+* Importer le module CategoryChartData de pptx.chart.data et XL_CHART_TYPE de pptx.enum.chart et pandas
 * Ouvrir une présentation existante ou créer une nouvelle présentation ayant une mise en page pouvant supporter un graphique
 * Définir le chemin vers le fichier Excel contenant les données
 * Lire les données
@@ -285,9 +283,10 @@ Voici un exemple
     pres.save('precipitations_mars.pptx')
 ```
 
-Bien sûr, il existe de nombreuses options pour personnaliser l'esthétique du graphique. Ces propriétés peuvent être explorées davantage dans la documentation, disponible à la fin du tutoriel
+(Encore une fois nous n'approfondirons pas davantage la logique du code, étant donné que nous avons déjà abordé quelques concepts fondamentaux plus tôt dans le tutoriel et que les autres devraient être déjà acquis. )
+Bien sûr, il existe de nombreuses options pour personnaliser l'esthétique du graphique. Ces propriétés peuvent être explorées davantage dans la documentation, disponible à la fin du tutoriel.
 
- #### Récapitulation
+ ### Récapitulation
  
  Voici un exemple combinant les connaissances que nous avons acquis lors de ce tutoriel:
 
@@ -396,7 +395,6 @@ import pandas as pd
     #pres = Presentation('demo8.pptx')
 ```
 
-En conclusion, il est remarquablement simple de combiner tous les éléments que nous avons explorés dans ce tutoriel. La stratégie adoptée dans ce code consiste à traiter une diapositive à la fois. Cependant, il existe de nombreuses autres approches, telles que le traitement individuel des éléments avant de les ajouter aux diapositives. Il est essentiel de noter qu'aucune stratégie n'est intrinsèquement meilleure qu'une autre. La « meilleure » stratégie dépendra toujours de la nature de la présentation ainsi que des besoins spécifiques de l'entreprise. Par conséquent, il est recommandé de choisir la stratégie qui répond le mieux à vos objectifs et à votre contexte particulier. En expérimentant avec différentes approches, vous pourrez trouver celle qui convient le mieux à vos besoins et à votre style de travail.
- 
+En conclusion, il est remarquablement simple de combiner tous les éléments que nous avons explorés dans ce tutoriel. La stratégie adoptée dans ce code consiste à traiter une diapositive à la fois. Cependant, il existe de nombreuses autres approches, telles que le traitement individuel des éléments avant de les ajouter aux diapositives. Il est essentiel de noter qu'aucune stratégie n'est intrinsèquement meilleure qu'une autre. La « meilleure » stratégie dépendra toujours de la nature de la présentation ainsi que des besoins spécifiques du client ou de l'utilisateur final. Par conséquent, il est recommandé de choisir la stratégie qui répond le mieux à vos objectifs et à votre contexte particulier. En expérimentant avec différentes approches, vous pourrez trouver celle qui convient le mieux à vos besoins et à votre style de travail.
 
 Documentation: https://python-pptx.readthedocs.io/en/latest/api/slides.html#slidemasters-objects 
